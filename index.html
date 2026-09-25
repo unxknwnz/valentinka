@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#ff9ec4">
+<title>Зинуле с любовью 💖</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body { width: 100%; min-height: 100%; }
+
+  body {
+    font-family: 'Nunito', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: linear-gradient(135deg, #ffe0ec 0%, #ffc2d9 40%, #ff9ec4 100%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    padding-top: max(20px, env(safe-area-inset-top));
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+    padding-left: max(15px, env(safe-area-inset-left));
+    padding-right: max(15px, env(safe-area-inset-right));
+    touch-action: pan-y;
+  }
+
+  .hearts-bg { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+  .heart-float {
+    position: absolute; bottom: -60px; font-size: 24px;
+    color: rgba(255, 255, 255, 0.7);
+    animation: rise linear infinite;
+    text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+    will-change: transform, opacity;
+  }
+  @keyframes rise {
+    0%   { transform: translateY(0) rotate(0deg) scale(0.6); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+  }
+
+  .card {
+    position: relative; z-index: 2;
+    max-width: 560px; width: 100%;
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 3px solid #ff8fbc;
+    border-radius: 32px;
+    padding: 45px 35px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(255, 20, 100, 0.25),
+                0 0 0 10px rgba(255, 255, 255, 0.35);
+    animation: cardIn 1s cubic-bezier(.2,.8,.3,1.2);
+  }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(40px) scale(0.9); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .big-heart {
+    font-size: 80px; line-height: 1;
+    animation: beat 1.2s ease-in-out infinite;
+    display: inline-block;
+    filter: drop-shadow(0 6px 14px rgba(255, 20, 100, 0.45));
+  }
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    25%      { transform: scale(1.18); }
+    50%      { transform: scale(0.97); }
+  }
+
+  .names {
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px; font-weight: 800;
+    margin: 18px 0 6px;
+    background: linear-gradient(90deg, #ff2e74, #ff6fa5, #ff2e74);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 3s linear infinite;
+    letter-spacing: 0.5px;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+  @keyframes shine { to { background-position: 200% center; } }
+
+  .subname {
+    font-size: 22px; color: #e8447f;
+    font-style: italic; font-weight: 700;
+    margin-bottom: 26px; letter-spacing: 2px;
+  }
+
+  .divider {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; color: #ff5e97; font-size: 18px; margin: 22px 0;
+  }
+  .divider::before, .divider::after {
+    content: ""; height: 2px; width: 70px;
+    background: linear-gradient(90deg, transparent, #ff8fbc);
+    border-radius: 2px;
+  }
+  .divider::after { background: linear-gradient(90deg, #ff8fbc, transparent); }
+
+  .greeting {
+    font-size: 19px; line-height: 1.7;
+    color: #7a2b4e; margin-bottom: 24px;
+  }
+  .greeting strong { color: #ff2e74; font-weight: 800; }
+
+  .wish {
+    font-size: 17px; line-height: 1.75;
+    color: #8a3a5c;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 20px; padding: 18px 20px;
+    border: 1.5px dashed #ff9ec4;
+  }
+
+  .hearts-row { font-size: 28px; margin-top: 26px; letter-spacing: 6px; }
+  .hearts-row span { display: inline-block; animation: pop 1.6s ease-in-out infinite; }
+  .hearts-row span:nth-child(2) { animation-delay: .2s; }
+  .hearts-row span:nth-child(3) { animation-delay: .4s; }
+  .hearts-row span:nth-child(4) { animation-delay: .6s; }
+  .hearts-row span:nth-child(5) { animation-delay: .8s; }
+  @keyframes pop {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50%      { transform: translateY(-8px) scale(1.25); }
+  }
+
+  .signature {
+    margin-top: 22px; font-size: 15px;
+    color: #b3567e; font-style: italic;
+  }
+
+  /* ============ КНОПКА ============ */
+  .btn {
+    margin-top: 28px;
+    padding: 15px 36px;
+    font-size: 17px; font-weight: 800;
+    font-family: inherit;
+    color: #fff;
+    background: linear-gradient(135deg, #ff4d8d, #ff7eb3);
+    border: none; border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255, 45, 110, 0.45);
+    transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    touch-action: manipulation;
+    min-height: 52px;
+    width: 100%; max-width: 280px;
+    position: relative;
+    z-index: 10;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+  }
+  .btn:active,
+  .btn.pressed {
+    transform: scale(0.94);
+    background: linear-gradient(135deg, #ff2e74, #ff5e97);
+    box-shadow: 0 4px 12px rgba(255,45,110,.6);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 14px 30px rgba(255,45,110,.55);
+    }
+  }
+
+  /* ============ СЛОЙ ДЛЯ СЕРДЕЧЕК ============ */
+  /* ВАЖНО: в Telegram WebView fixed + backdrop-filter ломается,
+     поэтому используем absolute внутри body (оно скроллится вместе со страницей) */
+  #burstLayer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    pointer-events: none;
+    z-index: 99999;
+    overflow: visible;
+  }
+
+  .burst {
+    position: absolute;
+    font-size: 28px;
+    line-height: 1;
+    pointer-events: none;
+    animation: burst 1.2s ease-out forwards;
+    will-change: transform, opacity;
+    transform: translate(-50%, -50%);
+    /* Форсим GPU-слой, чтобы emoji не «тормозили» в WebView */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  @keyframes burst {
+    0%   { transform: translate(-50%, -50%) scale(0.4) rotate(0deg); opacity: 1; }
+    70%  { opacity: 1; }
+    100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.5) rotate(var(--rot)); opacity: 0; }
+  }
+
+  /* ============ АДАПТАЦИЯ ============ */
+  @media (max-width: 768px) {
+    .card { padding: 38px 26px; border-radius: 28px; }
+    .names { font-size: 34px; }
+    .big-heart { font-size: 72px; }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 12px 10px;
+      padding-top: max(18px, env(safe-area-inset-top));
+      padding-bottom: max(18px, env(safe-area-inset-bottom));
+    }
+    .card {
+      padding: 28px 18px;
+      border-radius: 24px;
+      border-width: 2px;
+      box-shadow: 0 14px 40px rgba(255, 20, 100, 0.22),
+                  0 0 0 6px rgba(255, 255, 255, 0.3);
+    }
+    .big-heart { font-size: 58px; }
+    .names { font-size: 26px; margin: 14px 0 4px; letter-spacing: 0; line-height: 1.3; }
+    .subname { font-size: 16px; margin-bottom: 18px; letter-spacing: 1px; }
+    .divider { margin: 16px 0; font-size: 16px; }
+    .divider::before, .divider::after { width: 50px; }
+    .greeting { font-size: 16px; line-height: 1.65; margin-bottom: 18px; }
+    .wish { font-size: 15px; line-height: 1.65; padding: 14px 14px; border-radius: 16px; }
+    .hearts-row { font-size: 22px; letter-spacing: 4px; margin-top: 20px; }
+    .btn { padding: 15px 24px; font-size: 16px; margin-top: 22px; }
+    .signature { font-size: 13px; margin-top: 18px; }
+    .burst { font-size: 24px; }
+    .heart-float { font-size: 18px !important; }
+  }
+
+  @media (max-width: 360px) {
+    .card { padding: 24px 14px; }
+    .names { font-size: 22px; }
+    .big-heart { font-size: 50px; }
+    .subname { font-size: 14px; letter-spacing: 0; }
+    .greeting { font-size: 15px; }
+    .wish { font-size: 14px; }
+    .hearts-row { font-size: 18px; letter-spacing: 2px; }
+    .btn { font-size: 15px; padding: 13px 20px; }
+  }
+
+  @media (max-height: 500px) and (orientation: landscape) {
+    body { align-items: flex-start; padding-top: 16px; padding-bottom: 16px; }
+    .card { padding: 22px 24px; }
+    .big-heart { font-size: 46px; }
+    .names { font-size: 24px; margin: 8px 0 2px; }
+    .subname { font-size: 15px; margin-bottom: 12px; }
+    .divider { margin: 12px 0; }
+    .greeting { font-size: 15px; margin-bottom: 14px; }
+    .wish { font-size: 14px; padding: 12px 14px; }
+    .hearts-row { font-size: 18px; margin-top: 14px; }
+    .btn { margin-top: 16px; padding: 12px 26px; font-size: 15px; min-height: 46px; }
+    .signature { margin-top: 12px; font-size: 12px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .heart-float, .big-heart, .hearts-row span, .card, .names {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hearts-bg" id="heartsBg"></div>
+  <div id="burstLayer"></div>
+
+  <div class="card">
+    <div class="big-heart">💖</div>
+
+    <h1 class="names">С днём рождения, моя любимая Зинуля 🎀</h1>
+    <div class="subname">Зиночке от Мишульки ✨</div>
+
+    <div class="divider">🎀</div>
+
+    <p class="greeting">
+      <strong>С днём рождения, любимая!</strong><br>
+      Сегодня весь мир становится чуточку розовее,<br>
+      потому что родилась ты — самая милая и красивая девушка на земле ❤️
+    </p>
+
+    <div class="wish">
+      Желаю тебе море счастья, тёплых объятий,<br>
+      исполнения самых заветных желаний<br>
+      и чтобы каждый день был наполнен любовью.<br>
+      Ты — моё сердечко, любимая! 💕
+    </div>
+
+    <div class="hearts-row">
+      <span>💗</span><span>💖</span><span>💕</span><span>💖</span><span>💗</span>
+    </div>
+
+    <button class="btn" id="loveBtn" type="button">Кликни на меня 💌</button>
+
+    <p class="signature">С любовью, только твой Мишулька ❤️</p>
+  </div>
+
+<script>
+  (function () {
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+    const bg = document.getElementById('heartsBg');
+    const burstLayer = document.getElementById('burstLayer');
+    const symbols = ['💖','💗','💕','💞','🌸','💝','❤️'];
+
+    // ---- Растягиваем слой сердечек на всю высоту документа ----
+    function resizeLayer() {
+      burstLayer.style.height = Math.max(
+        document.body.scrollHeight,
+        window.innerHeight
+      ) + 'px';
+    }
+    resizeLayer();
+    window.addEventListener('resize', resizeLayer);
+    window.addEventListener('orientationchange', () => setTimeout(resizeLayer, 200));
+
+    // ---- Фоновые сердечки ----
+    const heartCount = isMobile ? 14 : 26;
+    for (let i = 0; i < heartCount; i++) {
+      const h = document.createElement('div');
+      h.className = 'heart-float';
+      h.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      h.style.left = Math.random() * 100 + 'vw';
+      h.style.fontSize = (14 + Math.random() * 22) + 'px';
+      h.style.animationDuration = (8 + Math.random() * 10) + 's';
+      h.style.animationDelay = (Math.random() * 12) + 's';
+      bg.appendChild(h);
+    }
+
+    // ---- Взрыв сердечек ----
+    function burstHearts(x, y) {
+      // Учитываем скролл: в Telegram WebView clientY не всегда = pageY
+      const pageX = x + window.scrollX;
+      const pageY = y + window.scrollY;
+
+      const count = isMobile ? 16 : 20;
+      for (let i = 0; i < count; i++) {
+        const s = document.createElement('div');
+        s.className = 'burst';
+        s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        s.style.left = pageX + 'px';
+        s.style.top = pageY + 'px';
+        s.style.setProperty('--dx', (Math.random() * 320 - 160) + 'px');
+        s.style.setProperty('--dy', (Math.random() * -320 - 60) + 'px');
+        s.style.setProperty('--rot', (Math.random() * 720 - 360) + 'deg');
+        burstLayer.appendChild(s);
+        setTimeout(() => s.remove(), 1300);
+      }
+    }
+
+    // ---- Кнопка ----
+    const btn = document.getElementById('loveBtn');
+
+    let lastFire = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    let firedByTouch = false;
+
+    function press(showPressed) {
+      if (showPressed) {
+        btn.classList.add('pressed');
+        setTimeout(() => btn.classList.remove('pressed'), 200);
+      }
+    }
+
+    function fire(clientX, clientY) {
+      const now = Date.now();
+      if (now - lastFire < 250) return;
+      lastFire = now;
+
+      const rect = btn.getBoundingClientRect();
+      const x = (typeof clientX === 'number' && clientX > 0) ? clientX : rect.left + rect.width / 2;
+      const y = (typeof clientY === 'number' && clientY > 0) ? clientY : rect.top + rect.height / 2;
+
+      burstHearts(x, y);
+      press(true);
+
+      if (navigator.vibrate) { try { navigator.vibrate(35); } catch(e){} }
+    }
+
+    // ============ ОСНОВНОЙ ОБРАБОТЧИК ДЛЯ TELEGRAM WEBVIEW ============
+
+    // 1. touchstart — сразу показываем визуальный отклик (кнопка «вдавливается»)
+    btn.addEventListener('touchstart', function (e) {
+      const t = e.changedTouches[0];
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+      touchStartTime = Date.now();
+      firedByTouch = false;
+
+      btn.classList.add('pressed');
+      // Снимаем через 200 мс на случай, если touchend не сработает
+      setTimeout(() => btn.classList.remove('pressed'), 220);
+    }, { passive: true });
+
+    // 2. touchend — проверяем, что это был тап, а не свайп, и запускаем эффект
+    btn.addEventListener('touchend', function (e) {
+      const t = e.changedTouches[0];
+      const dx = Math.abs(t.clientX - touchStartX);
+      const dy = Math.abs(t.clientY - touchStartY);
+      const dt = Date.now() - touchStartTime;
+
+      if (dx < 20 && dy < 20 && dt < 700) {
+        firedByTouch = true;
+        // НЕ вызываем preventDefault — в Telegram WebView это иногда ломает touchend
+        fire(t.clientX, t.clientY);
+
+        // Резервный вариант: если через 100 мс сердечки не появились — попробуем центр кнопки
+        setTimeout(() => {
+          if (burstLayer.children.length === 0) {
+            const rect = btn.getBoundingClientRect();
+            burstHearts(rect.left + rect.width / 2, rect.top + rect.height / 2);
+          }
+        }, 100);
+      } else {
+        btn.classList.remove('pressed');
+      }
+    }, { passive: true });
+
+    // 3. click — сработает, если touchend по какой-то причине не сработал
+    //    (в Telegram WebView часто «проскакивает» именно click)
+    btn.addEventListener('click', function (e) {
+      if (firedByTouch) {
+        firedByTouch = false;
+        return;  // уже обработали в touchend
+      }
+      fire(e.clientX, e.clientY);
+    });
+
+    // 4. mousedown для ПК-версии Telegram Desktop
+    btn.addEventListener('mousedown', function (e) {
+      fire(e.clientX, e.clientY);
+    });
+
+    // 5. pointerdown как последний резерв (для новых версий WebView)
+    btn.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse') return; // мышь уже обработал mousedown
+      // Только показываем «вдавливание», чтобы не дублировать
+      btn.classList.add('pressed');
+      setTimeout(() => btn.classList.remove('pressed'), 220);
+    });
+
+    // ---- Пересчитываем слой сердечек при изменении размеров ----
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', resizeLayer);
+    }
+  })();
+</script>
+</body>
+</html>
